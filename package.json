@@ -1,0 +1,16 @@
+{
+  "author": {
+    "name": "openlab"
+  },
+  "dependencies": {
+    "cheerio": "*",
+    "colors": "^1.1.2",
+    "github-slugid": "1.0.1"
+  },
+  "description": "navigation",
+  "engines": {
+    "gitbook": ">=3.0.0"
+  },
+  "name": "gitbook-plugin-fi-nav",
+  "version": "0.0.1"
+}
