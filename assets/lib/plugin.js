@@ -193,6 +193,27 @@ function handlerH3Toc(config, count, header, tocs, pageLevel) {
     });
 }
 
+function handlerToggle() {
+	var navbar = $("#anchor-navigation-ex-navbar");
+  var navbarul = $("#anchor-navigation-ex-navbar ul");
+	var nw = navbar.width();
+	if (nw > 40) {
+		navbar.stop().animate({
+			width: "40px"
+		}, 300);
+		navbarul.css("display", "none");
+		navbar.css("border-left", "0px")
+    navbar.css("background-color", "rgba(255,255,255,0)")
+	} else {
+		navbar.stop().animate({
+			width: 300
+		}, 300);
+		navbarul.css("display", "block");
+		navbar.css("border-left", "1px solid #e5e5e5");
+    navbar.css("background-color", "rgba(255,255,255,0.98)")
+	};
+};
+
 /**
  * 处理浮动导航：拼接锚点导航html，并添加到html末尾，利用css 悬浮
  * @param option
@@ -211,7 +232,7 @@ function handlerFloatNavbar($, tocs, page) {
         level3Icon = float.level3Icon;
     }
 
-    var script ='<script>function handlerToggle() {var navbar=$("#anchor-navigation-ex-navbar"); var nw=navbar.width(); if(nw > 70){ navbar.stop().animate({width:"70px"},300); $("#anchor-navigation-ex-navbar ul").css("display","none") ;$("#anchor-navigation-ex-navbar").css("border-left","0px") }else{ navbar.stop().animate({width:300},300); $("#anchor-navigation-ex-navbar ul").css("display","block"); $("#anchor-navigation-ex-navbar").css("border-left","1px solid #e5e5e5");} ;};</script>'
+    var script ='<script>' + handlerToggle.toString() + '</script>'
     var html = "<div id='anchor-navigation-ex-navbar'><i class='fa fa-anchor' onclick='handlerToggle()'></i><ul>";
     for (var i = 0; i < tocs.length; i++) {
         var h1Toc = tocs[i];
@@ -236,7 +257,7 @@ function handlerFloatNavbar($, tocs, page) {
 
     html += "</ul></div>";
 
-    page.content = script + html + $.html();
+    page.content = script + html + $.html() ;
 }
 
 function handlerPageTopNavbar($, tocs, page) {
