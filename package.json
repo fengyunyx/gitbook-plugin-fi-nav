@@ -12,5 +12,5 @@
     "gitbook": ">=3.0.0"
   },
   "name": "gitbook-plugin-fi-nav",
-  "version": "0.0.2"
+  "version": "0.0.3"
 }

@@ -200,18 +200,24 @@ function handlerToggle() {
 	if (nw > 40) {
 		navbar.stop().animate({
 			width: "40px"
-		}, 300);
+		}, 200);
 		navbarul.css("display", "none");
 		navbar.css("border-left", "0px")
     navbar.css("background-color", "rgba(255,255,255,0)")
 	} else {
 		navbar.stop().animate({
 			width: 300
-		}, 300);
+		}, 200);
 		navbarul.css("display", "block");
 		navbar.css("border-left", "1px solid #e5e5e5");
     navbar.css("background-color", "rgba(255,255,255,0.98)")
 	};
+};
+
+function mobileToggle() {
+  if(document.body.clientWidth<800) {
+    handlerToggle()
+  }
 };
 
 /**
@@ -232,21 +238,21 @@ function handlerFloatNavbar($, tocs, page) {
         level3Icon = float.level3Icon;
     }
 
-    var script ='<script>' + handlerToggle.toString() + '</script>'
+    var script ='<script>' + handlerToggle.toString() + ';' + mobileToggle.toString() + ';</script>'
     var html = "<div id='anchor-navigation-ex-navbar'><i class='fa fa-anchor' onclick='handlerToggle()'></i><ul>";
     for (var i = 0; i < tocs.length; i++) {
         var h1Toc = tocs[i];
-        html += "<li><span class='title-icon " + level1Icon + "'></span><a href='#" + h1Toc.url + "'><b>" + h1Toc.level + "</b>" + h1Toc.name + "</a></li>";
+        html += "<li><span class='title-icon " + level1Icon + "'></span><a href='#" + h1Toc.url + "' onclick='mobileToggle()'><b>" + h1Toc.level + "</b>" + h1Toc.name + "</a></li>";
         if (h1Toc.children.length > 0) {
             html += "<ul>"
             for (var j = 0; j < h1Toc.children.length; j++) {
                 var h2Toc = h1Toc.children[j];
-                html += "<li><span class='title-icon " + level2Icon + "'></span><a href='#" + h2Toc.url + "'><b>" + h2Toc.level + "</b>" + h2Toc.name + "</a></li>";
+                html += "<li><span class='title-icon " + level2Icon + "'></span><a href='#" + h2Toc.url + "' onclick='mobileToggle()'><b>" + h2Toc.level + "</b>" + h2Toc.name + "</a></li>";
                 if (h2Toc.children.length > 0) {
                     html += "<ul>";
                     for (var k = 0; k < h2Toc.children.length; k++) {
                         var h3Toc = h2Toc.children[k];
-                        html += "<li><span class='title-icon " + level3Icon + "'></span><a href='#" + h3Toc.url + "'><b>" + h3Toc.level + "</b>" + h3Toc.name + "</a></li>";
+                        html += "<li><span class='title-icon " + level3Icon + "'></span><a href='#" + h3Toc.url + "' onclick='mobileToggle()'><b>" + h3Toc.level + "</b>" + h3Toc.name + "</a></li>";
                     }
                     html += "</ul>";
                 }
